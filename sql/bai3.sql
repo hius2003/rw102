@@ -162,6 +162,7 @@ INSERT INTO department (department_name)
 VALUES ('Sales'),
        ('Marketing'),
        ('HR'),
+       ('Waiting'),
        ('Engineering');
 
 -- Position table
@@ -169,6 +170,7 @@ INSERT INTO position (position_name)
 VALUES ('Dev'),
        ('Test'),
        ('Scrum Master'),
+       ('Developer')
        ('PM');
 
 -- Account table
