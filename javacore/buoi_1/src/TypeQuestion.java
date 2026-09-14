@@ -1,4 +1,4 @@
-public class Type_question {
+public class TypeQuestion {
     int id;
     String name;
 }

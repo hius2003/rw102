@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Group_account {
+public class GroupAccount {
      Group group;
      Account account;
      LocalDate joinDate;

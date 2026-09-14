@@ -1,4 +1,4 @@
-public class Exam_question {
+public class ExamQuestion {
     Exam exam;
     Question question;
 }

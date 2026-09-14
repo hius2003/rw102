@@ -76,44 +76,44 @@ public class Program {
         group3.createDate = LocalDate.now();
 
         // 5. Group_account
-        Group_account ga1 = new Group_account();
+        GroupAccount ga1 = new GroupAccount();
         ga1.group = group1;
         ga1.account = acc1;
         ga1.joinDate = LocalDate.now();
 
-        Group_account ga2 = new Group_account();
+        GroupAccount ga2 = new GroupAccount();
         ga2.group = group2;
         ga2.account = acc2;
         ga2.joinDate = LocalDate.now();
 
-        Group_account ga3 = new Group_account();
+        GroupAccount ga3 = new GroupAccount();
         ga3.group = group3;
         ga3.account = acc3;
         ga3.joinDate = LocalDate.now();
 
         // 6. Type_question
-        Type_question type1 = new Type_question();
+        TypeQuestion type1 = new TypeQuestion();
         type1.id = 1;
         type1.name = "Tự luận";
 
-        Type_question type2 = new Type_question();
+        TypeQuestion type2 = new TypeQuestion();
         type2.id = 2;
         type2.name = "Trắc nghiệm";
 
-        Type_question type3 = new Type_question();
+        TypeQuestion type3 = new TypeQuestion();
         type3.id = 3;
         type3.name = "True/False";
 
         // 7. Category_question
-        Category_question cat1 = new Category_question();
+        CategoryQuestion cat1 = new CategoryQuestion();
         cat1.id = 1;
         cat1.name = "Java";
 
-        Category_question cat2 = new Category_question();
+        CategoryQuestion cat2 = new CategoryQuestion();
         cat2.id = 2;
         cat2.name = "SQL";
 
-        Category_question cat3 = new Category_question();
+        CategoryQuestion cat3 = new CategoryQuestion();
         cat3.id = 3;
         cat3.name = "Python";
 
@@ -190,15 +190,15 @@ public class Program {
         exam3.createDate = LocalDate.now();
 
         // 11. Exam_question
-        Exam_question eq1 = new Exam_question();
+        ExamQuestion eq1 = new ExamQuestion();
         eq1.exam = exam1;
         eq1.question = q1;
 
-        Exam_question eq2 = new Exam_question();
+        ExamQuestion eq2 = new ExamQuestion();
         eq2.exam = exam2;
         eq2.question = q2;
 
-        Exam_question eq3 = new Exam_question();
+        ExamQuestion eq3 = new ExamQuestion();
         eq3.exam = exam3;
         eq3.question = q3;
 
