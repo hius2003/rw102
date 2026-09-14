@@ -53,3 +53,20 @@ FROM question q
 JOIN `account` a
 ON q.creator_id = a.account_id
 WHERE a.full_name LIKE 'Nguyen %';
+
+
+DELIMITER $$
+
+CREATE PROCEDURE get_account_by_department(IN p_department_name VARCHAR(100))
+
+BEGIN
+    SELECT a.*
+    FROM account a
+    JOIN department d
+	ON a.department_id = d.department_id
+    WHERE d.department_name = p_department_name;
+END $$
+
+DELIMITER ;
+
+CALL get_account_by_department('Sales');
