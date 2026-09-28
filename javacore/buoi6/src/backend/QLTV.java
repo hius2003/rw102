@@ -17,17 +17,17 @@ public class QLTV implements IQLTV {
         this.scanner = scanner;
     }
 
+    // 1. Thêm tài liệu
     @Override
     public void themTaiLieu() {
         System.out.println("1. Sách");
         System.out.println("2. Tạp chí");
         System.out.println("3. Báo");
-        System.out.print("Chọn loại: ");
-        String loai = scanner.nextLine();
 
-        if (!loai.equals("1")
-                && !loai.equals("2")
-                && !loai.equals("3")) {
+        System.out.print("Chọn loại: ");
+        int loai = Integer.parseInt(scanner.nextLine());
+
+        if (loai < 1 || loai > 3) {
             System.out.println("Loại không hợp lệ!");
             return;
         }
@@ -35,7 +35,7 @@ public class QLTV implements IQLTV {
         System.out.print("Mã tài liệu: ");
         String ma = scanner.nextLine();
 
-        // Kiểm tra mã đã tồn tại chưa
+        // Kiểm tra mã trùng
         for (TaiLieu taiLieu : danhSach) {
             if (taiLieu.getMaTaiLieu().equalsIgnoreCase(ma)) {
                 System.out.println("Mã đã tồn tại!");
@@ -49,44 +49,49 @@ public class QLTV implements IQLTV {
         System.out.print("Số bản phát hành: ");
         int soBan = Integer.parseInt(scanner.nextLine());
 
-        if (loai.equals("1")) {
-            System.out.print("Tên tác giả: ");
-            String tacGia = scanner.nextLine();
+        switch (loai) {
+            case 1:
+                System.out.print("Tên tác giả: ");
+                String tacGia = scanner.nextLine();
 
-            System.out.print("Số trang: ");
-            int soTrang = Integer.parseInt(scanner.nextLine());
+                System.out.print("Số trang: ");
+                int soTrang = Integer.parseInt(scanner.nextLine());
 
-            Sach sach = new Sach(
-                    ma, nhaXuatBan, soBan, tacGia, soTrang
-            );
+                Sach sach = new Sach(
+                        ma, nhaXuatBan, soBan, tacGia, soTrang
+                );
 
-            danhSach.add(sach);
+                danhSach.add(sach);
+                break;
 
-        } else if (loai.equals("2")) {
-            System.out.print("Số phát hành: ");
-            int soPhatHanh = Integer.parseInt(scanner.nextLine());
+            case 2:
+                System.out.print("Số phát hành: ");
+                int soPhatHanh = Integer.parseInt(scanner.nextLine());
 
-            System.out.print("Tháng phát hành: ");
-            int thang = Integer.parseInt(scanner.nextLine());
+                System.out.print("Tháng phát hành: ");
+                int thang = Integer.parseInt(scanner.nextLine());
 
-            TapChi tapChi = new TapChi(
-                    ma, nhaXuatBan, soBan, soPhatHanh, thang
-            );
+                TapChi tapChi = new TapChi(
+                        ma, nhaXuatBan, soBan, soPhatHanh, thang
+                );
 
-            danhSach.add(tapChi);
+                danhSach.add(tapChi);
+                break;
 
-        } else {
-            System.out.print("Ngày phát hành (yyyy-MM-dd): ");
-            LocalDate ngay = LocalDate.parse(scanner.nextLine());
+            case 3:
+                System.out.print("Ngày phát hành (yyyy-MM-dd): ");
+                LocalDate ngay = LocalDate.parse(scanner.nextLine());
 
-            Bao bao = new Bao(ma, nhaXuatBan, soBan, ngay);
+                Bao bao = new Bao(ma, nhaXuatBan, soBan, ngay);
 
-            danhSach.add(bao);
+                danhSach.add(bao);
+                break;
         }
 
         System.out.println("Thêm thành công!");
     }
 
+    // 2. Xóa tài liệu theo mã
     @Override
     public void xoaTheoMa() {
         System.out.print("Nhập mã cần xóa: ");
@@ -102,9 +107,10 @@ public class QLTV implements IQLTV {
             }
         }
 
-        System.out.println("Không tìm thấy mã tài liệu!");
+        System.out.println("Không tìm thấy tài liệu!");
     }
 
+    // 3. Hiển thị tất cả tài liệu
     @Override
     public void hienThiDanhSach() {
         if (danhSach.isEmpty()) {
@@ -117,31 +123,50 @@ public class QLTV implements IQLTV {
         }
     }
 
+    // 4. Tìm tài liệu theo loại
     @Override
     public void timKiemTheoLoai() {
         System.out.println("1. Sách");
         System.out.println("2. Tạp chí");
         System.out.println("3. Báo");
+
         System.out.print("Chọn loại cần tìm: ");
-        String loai = scanner.nextLine();
+        int loai = Integer.parseInt(scanner.nextLine());
+
+        if (loai < 1 || loai > 3) {
+            System.out.println("Loại không hợp lệ!");
+            return;
+        }
 
         boolean timThay = false;
 
         for (TaiLieu taiLieu : danhSach) {
-            if (loai.equals("1") && taiLieu instanceof Sach) {
-                System.out.println(taiLieu);
-                timThay = true;
-            } else if (loai.equals("2") && taiLieu instanceof TapChi) {
-                System.out.println(taiLieu);
-                timThay = true;
-            } else if (loai.equals("3") && taiLieu instanceof Bao) {
-                System.out.println(taiLieu);
-                timThay = true;
+            switch (loai) {
+                case 1:
+                    if (taiLieu instanceof Sach) {
+                        System.out.println(taiLieu);
+                        timThay = true;
+                    }
+                    break;
+
+                case 2:
+                    if (taiLieu instanceof TapChi) {
+                        System.out.println(taiLieu);
+                        timThay = true;
+                    }
+                    break;
+
+                case 3:
+                    if (taiLieu instanceof Bao) {
+                        System.out.println(taiLieu);
+                        timThay = true;
+                    }
+                    break;
             }
         }
 
-        if (!timThay) {
-            System.out.println("Không tìm thấy tài liệu phù hợp.");
+        if (timThay == false) {
+            System.out.println("Không có tài liệu thuộc loại này.");
         }
     }
 }
